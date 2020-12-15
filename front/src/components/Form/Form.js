@@ -25,7 +25,7 @@ const Form = () => {
     e.preventDefault()
     axios({
       method: "POST", 
-      url:"/contact", 
+      url:"/", 
       data: data
     }).then((res)=>{
       if (res.data.status === 'success'){
