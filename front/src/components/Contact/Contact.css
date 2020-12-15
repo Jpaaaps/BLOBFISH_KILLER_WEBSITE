@@ -1,0 +1,40 @@
+.contact_container {
+  background-color: black;
+	color: #fff;
+	height: 90vh;
+	padding-top: 40px;
+	position: relative;
+}
+
+.contact_container::after {
+	content: ' ';
+	display: block;
+	position: absolute;
+	left: 50px;
+	top: 100px;
+	right: 50px;
+	width: 90%;
+	height: 100%;
+	opacity: 0.5;
+	background-image: url(/src/picture/poisson.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+}
+
+.contact {
+	text-align: center;
+	text-shadow: 0px 2px 20px rgba(255, 255, 255, 0.7);
+	z-index: 2;
+}
+
+.contact_content {
+	max-width: 100%;
+	margin: 0 auto;
+	position: relative;
+	z-index: 2;
+}
+
+@media screen and (max-width: 820px) {
+
+	
+}
