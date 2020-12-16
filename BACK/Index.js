@@ -5,10 +5,13 @@ const cors = require("cors")
 const nodemailer = require("nodemailer")
 const dotenv = require('dotenv')
 const cookieParser = require('cookie-parser')
+const bodyParser = require("body-parser")
 
 app.use(cors());
 app.use(express.json());
 app.use(cookieParser())
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({extended:true}))
 app.use("/", router);
 
 let transporter = nodemailer.createTransport({
@@ -29,7 +32,7 @@ let transporter = nodemailer.createTransport({
     }
   })
   
-  router.post('/', (req, res, next) => {
+  router.post('/api/contact', (req, res, next) => {
     var firstName = req.body.firstName
     var lastName = req.body.lastName
     var email = req.body.email
@@ -37,22 +40,19 @@ let transporter = nodemailer.createTransport({
     var content = `firstName: ${firstName} \n lastName: ${lastName} \n email: ${email} \n message: ${message} `
     
     var mail = {
-      from: 'jpgerard87@gmail.com',
+      from: email,
       to: 'jpgerard87@gmail.com',
-      text: content
+      text: message
     }
 
     transporter.sendMail(mail, (err, data) => {
       if (err) {
-        res.json({
-          status: 'fail'
-        })
-      } else {
-        res.json({
-         status: 'success'
-        })
+        res.send('An error occured')
+        } else {
+        res.send('Success')
+        }
       }
-    })
+    )
   })
 
 

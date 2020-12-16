@@ -25,18 +25,19 @@ const Form = () => {
     e.preventDefault()
     axios({
       method: "POST", 
-      url:"/", 
+      url:"/api/contact", 
       data: data
     }).then((res)=>{
-      if (res.data.status === 'success'){
+      if (res.data.sent === true){
           alert("Message Sent."); 
           resetForm()
-      }else if(res.data.status === 'fail'){
+      }else if(res.data.sent === false){
           alert("Message failed to send.")
       }
     })
-}
-const resetForm = () => {
+  }
+  
+  const resetForm = () => {
     this.setState({firstName: '', lastName: '', email: '',subject:'', message: ''})
   }
 
