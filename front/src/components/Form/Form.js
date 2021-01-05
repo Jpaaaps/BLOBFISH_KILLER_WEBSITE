@@ -1,53 +1,62 @@
-import React, { useState } from "react"
-import { useForm } from "react-hook-form"
-import ErrorMessage from '../ErrorMessage'
-import axios from 'axios'
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import ErrorMessage from "../ErrorMessage";
+import axios from "axios";
 
-import './Form.css'
+import "./Form.css";
 
 const Form = () => {
-  const [data, setData] = useState({ firstName: '', lastName: '', email: '', message: '', sent: false })
+  const [data, setData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    message: "",
+    sent: false,
+  });
 
-  const {
-    register,
-    errors,
-  } = useForm()
-  
+  const { register, errors } = useForm();
+
   const handleChange = (e) => {
-    const {name, value} = e.target
-        setData({
-            ...data,
-            [name]: value
-    })
-  }
-	
+    const { name, value } = e.target;
+    setData({
+      ...data,
+      [name]: value,
+    });
+  };
+
   const handleSubmit = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     axios({
-      method: "POST", 
-      url:"/api/contact", 
-      data: data
-    }).then((res)=>{
-      if (res.data.sent === true){
-          alert("Message Sent."); 
-          resetForm()
-      }else if(res.data.sent === false){
-          alert("Message failed to send.")
+      method: "POST",
+      url: "http://localhost:8000/",
+      data: data,
+    }).then((res) => {
+      console.log("data", data);
+      if (res.data.sent === true) {
+        alert("Message Sent.");
+        resetForm();
+      } else if (res.data.sent === false) {
+        alert("Message failed to send.");
       }
-    })
-  }
-  
+    });
+  };
+
   const resetForm = () => {
-    this.setState({firstName: '', lastName: '', email: '',subject:'', message: ''})
-  }
+    this.setState({
+      firstName: "",
+      lastName: "",
+      email: "",
+      subject: "",
+      message: "",
+    });
+  };
 
   return (
     <div className="form_container">
       <form onSubmit={handleSubmit}>
-        
         <label>First Name</label>
-        <input 
-          name="firstName" 
+        <input
+          name="firstName"
           ref={register({ required: true })}
           onChange={handleChange}
           value={data.firstName}
@@ -55,8 +64,8 @@ const Form = () => {
         <ErrorMessage error={errors.firstName} />
 
         <label>Last Name</label>
-        <input 
-          name="lastName" 
+        <input
+          name="lastName"
           ref={register({ required: true, minLength: 2 })}
           onChange={handleChange}
           value={data.lastName}
@@ -73,19 +82,19 @@ const Form = () => {
         <ErrorMessage error={errors.email} />
 
         <label>A message for us ?</label>
-        <textarea 
-          name="message"  
+        <textarea
+          name="message"
           ref={register({ required: true })}
           value={data.message}
           onChange={handleChange}
-          rows='3'
+          rows="3"
         />
         <ErrorMessage error={errors.firstName} />
 
         <button type="submit">Submit</button>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;
