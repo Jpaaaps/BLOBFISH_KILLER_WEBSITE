@@ -28,11 +28,11 @@ let transporter = nodemailer.createTransport({
     if (error) {
     console.log(error);
     } else {
-    console.log("Server is ready to take our messages");
+    console.log("Server is ready to take your messages");
     }
   })
   
-  router.post('/api/contact', (req, res, next) => {
+  router.post('http://localhost:8000/', (req, res, next) => {
     var firstName = req.body.firstName
     var lastName = req.body.lastName
     var email = req.body.email
@@ -56,6 +56,4 @@ let transporter = nodemailer.createTransport({
   })
 
 
-app.listen(8000, () => 
-	console.log("Server is Running")
-)
+app.listen(8000, () => console.log("Server is Running"))

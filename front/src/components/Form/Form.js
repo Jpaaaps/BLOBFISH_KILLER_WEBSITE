@@ -25,7 +25,7 @@ const Form = () => {
     e.preventDefault()
     axios({
       method: "POST", 
-      url:"/api/contact", 
+      url:"http://localhost:8000", 
       data: data
     }).then((res)=>{
       if (res.data.sent === true){

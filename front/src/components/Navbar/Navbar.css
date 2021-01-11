@@ -73,7 +73,7 @@
   display: none;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 768px) {
 
   .nav-menu {
     display: flex;
@@ -112,7 +112,10 @@
     position: absolute;
     top: 0;
     left: 0;
+    margin-left: 0;
+    margin-top: 5px;
     transform: translate(25%, 50%);
+    font-size: 1.5rem;
   }
 
   .menu-icon {
@@ -121,13 +124,13 @@
     top: 0;
     right: 0;
     transform: translate(-100%, 60%);
-    font-size: 1.8rem;
+    font-size: 1.4rem;
     cursor: pointer;
   }
 
   .fa-skull-crossbones {
     color: #E8318A;
-    font-size: 2rem;
+    font-size: 1.6rem;
   }
 
   .nav-links-mobile {
@@ -150,4 +153,13 @@
     color: #242424;
     transition: 250ms;
   }
+}
+
+@media only screen and (min-width: 320px) and (max-width: 480px) {
+
+  .navbar-logo {
+    font-size: 1.3rem;
+    padding-right: 100px;
+  }
+
 }
